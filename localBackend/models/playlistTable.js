@@ -23,7 +23,10 @@ const playlistTable = seque.define('playlistTable', {
         type:DataTypes.TIME,
     },
     videoLinks:{
-        type:DataTypes.TEXT,
+        type:DataTypes.TEXT('LONG'),
+    },
+    videoLinksSize:{
+        type:DataTypes.TEXT('LONG'),
     },
     movieID:{
         type:DataTypes.INTEGER,

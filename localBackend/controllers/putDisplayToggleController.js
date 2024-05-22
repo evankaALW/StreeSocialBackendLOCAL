@@ -5,7 +5,7 @@ putDisplayToggleController.putDisplayToggle = async (req,res) =>
 {
     try {
         const {advertisementID, displayToggle, userResponseToggle} = req.body;
-        const query = `UPDATE advertisementTable SET displayToggle = CASE WHEN id = ${advertisementID} THEN ${displayToggle} ELSE displayToggle END, userResponseToggle = ${userResponseToggle}`;
+        const query = `UPDATE advertisementLocalTable SET displayToggle = CASE WHEN id = ${advertisementID} THEN ${displayToggle} ELSE displayToggle END, userResponseToggle = ${userResponseToggle}`;
         const results = await connection.query(query);
     
         console.log('displayToggle, userResponseToggle updated successfully');

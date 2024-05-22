@@ -7,6 +7,9 @@ const app = express();
 
 const playlistTable = require('./models/playlistTable')
 const clickerDeviceDetailsTable = require('./models/clickerDeviceDetailsTable')
+const movieLocalTable = require('./models/movieLocalTable');
+const advertisementLocalTable = require('./models/advertisementLocalTable');
+const questionLocalTable = require('./models/questionLocalTable');
 
 const schedulerDataRouter = require('../localBackend/routes/getSchedulerDataRouter');
 const userResponseRouter = require('../localBackend/routes/getUserResponseDataRouter');
@@ -16,6 +19,7 @@ const fileDownloadOptionRouter = require('./routes/getFileDownloadOptionRouter')
 const postPlaylistLocalRouter = require('./routes/postPlaylistLocalRouter');
 const getPlaylistLocalRouter = require('./routes/getLocalPlaylistRouter');
 const clickerDataRouter = require('./routes/clickerDataRouter');
+const getVideoDetailsRouter = require('./routes/getPlayAllPlaylistRouter');
 
 // Middleware
 app.use(cors())
@@ -30,6 +34,7 @@ app.use('',fileDownloadOptionRouter);
 app.use('',postPlaylistLocalRouter);
 app.use('',getPlaylistLocalRouter);
 app.use('',clickerDataRouter);
+app.use('',getVideoDetailsRouter);
 
 const PORT =  8014;
 app.listen(PORT, () => {
