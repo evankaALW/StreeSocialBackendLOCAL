@@ -9,7 +9,6 @@
      let errorIndex = 0;
      let message = '';
      const { videoURL, liveFileServerURL, localFileParentURL } = req.query;
-    // const videoURLList = videoURLs.split(',');
     
      try {
        // Local file

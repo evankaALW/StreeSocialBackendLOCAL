@@ -1,11 +1,11 @@
-const connection = require('../config/db'); // Assuming you have a database configuration file
+const connection = require('../config/localdb'); // Assuming you have a database configuration file
 const putDisplayToggleController = {};
 
 putDisplayToggleController.putDisplayToggle = async (req,res) =>
 {
     try {
-        const {advertisementID, displayToggle, userResponseToggle} = req.body;
-        const query = `UPDATE advertisementLocalTable SET displayToggle = CASE WHEN id = ${advertisementID} THEN ${displayToggle} ELSE displayToggle END, userResponseToggle = ${userResponseToggle}`;
+        const {videoID, displayToggle, userResponseToggle} = req.body;
+        const query = `UPDATE advertisementLocalTable SET displayToggle = CASE WHEN id = ${videoID} THEN ${displayToggle} ELSE displayToggle END, userResponseToggle = ${userResponseToggle}`;
         const results = await connection.query(query);
     
         console.log('displayToggle, userResponseToggle updated successfully');

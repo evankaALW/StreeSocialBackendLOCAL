@@ -5,10 +5,10 @@ import '../styles/navbar.css';
 export const Navbar = () => {
   return (
     <div className="navbar">
-      <Link to='videoPlaylist'>
+      <Link to='downloadPlaylist'>
         <h3>Video Playlist</h3>
       </Link>
-      <Link to='videoPlayer'>
+      <Link to='viewPlaylist'>
         <h3>Video Player</h3>
       </Link>
       <Link to='clickerAssignForm'>

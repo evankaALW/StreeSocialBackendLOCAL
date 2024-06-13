@@ -4,7 +4,7 @@ const getSchedulerData = {
     schedulerData: async (req, res) => {
         try {
             const { theatreid } = req.params;
-            const query = `SELECT sd.id, sd.screenID, st.screenNo, sd.premiereDate, sd.premiereTime, sd.slotIndex, sd.videoLinks, sd.videoLinksSize, sd.movieID, sd.advertisementIDList, sd.isDeleted FROM schedulerTable AS sd JOIN 
+            const query = `SELECT sd.id, sd.screenID, st.screenNo, sd.premiereDate, sd.premiereTime, sd.slotIndex, sd.videoLinks, sd.videoLinksSize, sd.videoLinksAndName, sd.movieID, sd.advertisementIDList, sd.isDeleted FROM schedulerTable AS sd JOIN 
             screenTable AS st ON sd.screenID = st.id WHERE sd.theatreID = ${theatreid}`;
             const scheduler = await connection.query(query);
 

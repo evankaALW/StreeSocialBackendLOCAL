@@ -11,6 +11,7 @@ const downloadPlaylistDetails = {
     try{
       const {schedulerData}=req.body;
       schedulerData.newVideoLinks = schedulerData.videoLinks;
+
       let responseMessage = '';
       var updateResult = '';
       var insertResult = '';
@@ -21,13 +22,13 @@ const downloadPlaylistDetails = {
       const selectLocalQuery = `SELECT * FROM playlistTable WHERE screenID = ${schedulerData.screenID} AND movieID=${schedulerData.movieID} AND slotIndex = ${schedulerData.slotIndex} and dateOfPremiere = '${dateDatabase} 00:00:00' and timeOfPremiere = '${schedulerData.premiereTime}'`;
       const selectResult = await connectionLocal.query(selectLocalQuery);
     if(selectResult[0].length > 0){
-      const updateQuery = `UPDATE playlistTable set videoLinks='${schedulerData.newVideoLinks}', videoLinksSize = '${schedulerData.videoLinksSize}' where id=${selectResult[0][0].id}`;
+      const updateQuery = `UPDATE playlistTable set videoLinks='${schedulerData.newVideoLinks}', videoLinksSize = '${schedulerData.videoLinksSize}', videoLinksAndName = '${schedulerData.videoLinksAndName}' where id=${selectResult[0][0].id}`;
       updateResult = await connectionLocal.query(updateQuery);
       responseMessage = responseMessage + "Update existing playlist successful!";
     }
     else{
-      const insertLocalQuery = `INSERT INTO playlistTable (screenID, screenNo, slotIndex, dateOfPremiere, timeOfPremiere, videoLinks, videoLinksSize, movieID, isDeleted, createdAt, updatedAt)
-      VALUES (${schedulerData.screenID}, ${schedulerData.screenNo}, ${schedulerData.slotIndex}, '${dateDatabase}', '${schedulerData.premiereTime}', '${schedulerData.newVideoLinks}', '${schedulerData.videoLinksSize}', ${schedulerData.movieID}, ${schedulerData.isDeleted}, CONVERT_TZ(NOW(), '+00:00', '+05:30'), CONVERT_TZ(NOW(), '+00:00', '+05:30'))`;
+      const insertLocalQuery = `INSERT INTO playlistTable (screenID, screenNo, slotIndex, dateOfPremiere, timeOfPremiere, videoLinks, videoLinksSize, videoLinksAndName, movieID, isDeleted, createdAt, updatedAt)
+      VALUES (${schedulerData.screenID}, ${schedulerData.screenNo}, ${schedulerData.slotIndex}, '${dateDatabase}', '${schedulerData.premiereTime}', '${schedulerData.newVideoLinks}', '${schedulerData.videoLinksSize}', '${schedulerData.videoLinksAndName}', ${schedulerData.movieID}, ${schedulerData.isDeleted}, CONVERT_TZ(NOW(), '+00:00', '+05:30'), CONVERT_TZ(NOW(), '+00:00', '+05:30'))`;
       insertResult = await connectionLocal.query(insertLocalQuery);
       responseMessage = responseMessage + "Insert new playlist successful!";
     }
